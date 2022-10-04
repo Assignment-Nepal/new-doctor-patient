@@ -1,7 +1,9 @@
-import 'package:sqflite/sqflite.dart';
+//@dart=2.9
+
 import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 import '../models/note.dart';
 import '../models/reminder.dart';
 import '../models/appoinment.dart';

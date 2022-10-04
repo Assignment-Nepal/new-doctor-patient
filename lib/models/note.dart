@@ -1,3 +1,5 @@
+//@dart=2.9
+
 class Note {
   int _id;
   String _title;

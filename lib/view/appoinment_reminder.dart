@@ -1,17 +1,17 @@
+//@dart=2.9
+
 import 'dart:math';
+import 'package:doctor_patient/models/appoinment.dart';
+import 'package:doctor_patient/services/database_helper.dart';
+import 'package:doctor_patient/view/home_page.dart';
+import 'package:doctor_patient/view/my__bottom_nav_bar.dart';
+import 'package:doctor_patient/widgets/app_default.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:intl/intl.dart';
-import 'package:roro_medicine_reminder/screens/main/home/homePage.dart';
-import 'package:roro_medicine_reminder/services/database_helper.dart';
-import 'package:roro_medicine_reminder/widgets/app_default.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../../components/navBar.dart';
-import '../../../models/appoinment.dart';
-import 'appoinment_decision_screen.dart';
-import 'appoinment_detail_screen.dart';
 
 
 class AppoinmentReminder extends StatefulWidget {
@@ -23,7 +23,7 @@ class AppoinmentReminder extends StatefulWidget {
 class _AppoinmentReminderState extends State<AppoinmentReminder> {
   var rng = Random();
   var kTextStyle =
-      TextStyle(color: Colors.brown, fontSize: 15, fontWeight: FontWeight.w700);
+  TextStyle(color: Colors.brown, fontSize: 15, fontWeight: FontWeight.w700);
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<Appoinment> appoinmentList;
   Appoinment appoinment;
@@ -275,16 +275,16 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
         Card(
           margin: EdgeInsets.all(8),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 2,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               onTap: () {
-                print('tap');
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return AppoinmentDecision(tempAppoinment);
-                }));
+                // print('tap');
+                // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //   return AppoinmentDecision(tempAppoinment);
+                // }));
               },
               onLongPress: () async {
                 _showSnackBar(context, 'Appoinment Done');
@@ -312,7 +312,7 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
               ),
               trailing: Text(time),
               subtitle:
-                  Text(tempAppoinment.address + ' at ' + tempAppoinment.place),
+              Text(tempAppoinment.address + ' at ' + tempAppoinment.place),
             ),
           ),
         ),
@@ -360,13 +360,13 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
             ),
             todayAppoinment.length == 0
                 ? Center(
-                    child: Text(
-                      'No Appointments today',
-                    ),
-                  )
+              child: Text(
+                'No Appointments today',
+              ),
+            )
                 : Column(
-                    children: getTodayAppoinmentWidget(context),
-                  ),
+              children: getTodayAppoinmentWidget(context),
+            ),
             SizedBox(
               height: 17,
             ),
@@ -379,8 +379,8 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
             ),
             upcomingAppoinment.isNotEmpty
                 ? Column(
-                    children: getUpcomingAppoinmentWidget(context),
-                  )
+              children: getUpcomingAppoinmentWidget(context),
+            )
                 : Center(child: Text('No Upcoming Appointments')),
             SizedBox(
               height: 15,
@@ -394,14 +394,14 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
             ),
             pastAppoinment.isNotEmpty
                 ? Column(
-                    children: getPastAppoinmentWidget(context),
-                  )
+              children: getPastAppoinmentWidget(context),
+            )
                 : Container(
-                    margin: EdgeInsets.only(bottom: 35),
-                    child: Center(
-                      child: Text('No past Appointments'),
-                    ),
-                  ),
+              margin: EdgeInsets.only(bottom: 35),
+              child: Center(
+                child: Text('No past Appointments'),
+              ),
+            ),
             SizedBox(
               height: 20,
             )
@@ -433,11 +433,11 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
   }
 
   void navigateToDetail(Appoinment appoinment, String name) async {
-    bool result =
-        await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return AppoinmentDetail(appoinment, name);
-      //return ReminderDetail();
-    }));
+    bool result = true;
+    // await Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //   return AppoinmentDetail(appoinment, name);
+    //   //return ReminderDetail();
+    // }));
 
     if (result == true) {
       updateListView();
@@ -448,7 +448,7 @@ class _AppoinmentReminderState extends State<AppoinmentReminder> {
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database) {
       Future<List<Appoinment>> appoinmentListFuture =
-          databaseHelper.getAppoinmentList();
+      databaseHelper.getAppoinmentList();
       appoinmentListFuture.then((appoinmentList) {
         setState(() {
           this.appoinmentList = appoinmentList;
@@ -484,7 +484,7 @@ class HeadingText extends StatelessWidget {
       child: Text(
         '$title :',
         style:
-            TextStyle(color: color, fontSize: 23, fontWeight: FontWeight.w800),
+        TextStyle(color: color, fontSize: 23, fontWeight: FontWeight.w800),
       ),
     );
   }
@@ -628,3 +628,4 @@ class TodayAppoinment extends StatelessWidget {
     );
   }
 }
+

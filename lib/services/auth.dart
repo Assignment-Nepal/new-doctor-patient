@@ -1,18 +1,17 @@
+//@dart=2.9
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_patient/view/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:roro_medicine_reminder/screens/authenticate/firebase_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/custom_exceptions.dart';
-import '../screens/main/home/homePage.dart';
 
 class AuthClass extends ChangeNotifier {
   String _token;
@@ -132,85 +131,85 @@ class AuthClass extends ChangeNotifier {
     }
   }
 
-  Future<void> _authenticate(
-      String email, String password, String urlSeg) async {
-    final url =
-        'https://identitytoolkit.googleapis.com/v1/$urlSeg?key=AIzaSyCw-YBHGinNHqpbZW74TpL511-s_p5KJQI';
-    try {
-      final response = await http.post(
-        Uri.parse(url),
-        body: json.encode(
-          {
-            'email': email,
-            'password': password,
-            'returnSecureToken': true,
-          },
-        ),
-      );
-      final QuerySnapshot result =
-          await FirebaseFirestore.instance.collection('profile').get();
-      final List<DocumentSnapshot> documents = result.docs;
-      bool userExits = false;
-      for (var document in documents) {
-        if (document.id == _auth.currentUser.uid) userExits = true;
-      }
-      SharedPreferences prefs;
-      prefs = await SharedPreferences.getInstance();
-
-      if (!userExits) {
-        prefs.setBool('first', true);
-        try {
-          await FirebaseFirestore.instance
-              .collection('profile')
-              .doc(_auth.currentUser.uid.toString())
-              .set({
-            'userName': _auth.currentUser.displayName,
-            'email': _auth.currentUser.email,
-            'phoneNumber': _auth.currentUser.phoneNumber ?? 'Not Set ',
-            'uid': _auth.currentUser.uid,
-            'picture': _auth.currentUser.photoURL ??
-                'https://www.nicepng.com/ourpic/u2q8i1t4t4t4q8a9_group-of-10-guys-login-user-icon-png/',
-            'weight': 'Not Set',
-            'height': 'Not Set',
-            'bloodPressure': 'Not Set',
-            'bloodSugar': 'Not Set',
-            'allergies': 'None',
-            'bloodGroup': 'Not Set',
-            'age': 'Not Set',
-            'gender': 'Not Set',
-          });
-        } catch (e) {
-          print(e.toString());
-        }
-      }
-      var _responseData = json.decode(response.body);
-      if (_responseData['error'] != null)
-        throw CustomExceptions(_responseData['error']['message']);
-
-      _token = _responseData['idToken'];
-      _userId = _responseData['localId'];
-      _expiryDate = DateTime.now().add(
-        Duration(
-          seconds: int.parse(
-            _responseData['expiresIn'],
-          ),
-        ),
-      );
-      _autoLogout();
-      // notifyListeners();
-
-      final userData = json.encode(
-        {
-          'token': _token,
-          'userId': _userId,
-          'expiryDate': _expiryDate.toIso8601String(),
-        },
-      );
-      prefs.setString('userData', userData);
-    } catch (error) {
-      throw error;
-    }
-  }
+  // Future<void> _authenticate(
+  //     String email, String password, String urlSeg) async {
+  //   final url =
+  //       'https://identitytoolkit.googleapis.com/v1/$urlSeg?key=AIzaSyCw-YBHGinNHqpbZW74TpL511-s_p5KJQI';
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse(url),
+  //       body: json.encode(
+  //         {
+  //           'email': email,
+  //           'password': password,
+  //           'returnSecureToken': true,
+  //         },
+  //       ),
+  //     );
+  //     final QuerySnapshot result =
+  //         await FirebaseFirestore.instance.collection('profile').get();
+  //     final List<DocumentSnapshot> documents = result.docs;
+  //     bool userExits = false;
+  //     for (var document in documents) {
+  //       if (document.id == _auth.currentUser.uid) userExits = true;
+  //     }
+  //     SharedPreferences prefs;
+  //     prefs = await SharedPreferences.getInstance();
+  //
+  //     if (!userExits) {
+  //       prefs.setBool('first', true);
+  //       try {
+  //         await FirebaseFirestore.instance
+  //             .collection('profile')
+  //             .doc(_auth.currentUser.uid.toString())
+  //             .set({
+  //           'userName': _auth.currentUser.displayName,
+  //           'email': _auth.currentUser.email,
+  //           'phoneNumber': _auth.currentUser.phoneNumber ?? 'Not Set ',
+  //           'uid': _auth.currentUser.uid,
+  //           'picture': _auth.currentUser.photoURL ??
+  //               'https://www.nicepng.com/ourpic/u2q8i1t4t4t4q8a9_group-of-10-guys-login-user-icon-png/',
+  //           'weight': 'Not Set',
+  //           'height': 'Not Set',
+  //           'bloodPressure': 'Not Set',
+  //           'bloodSugar': 'Not Set',
+  //           'allergies': 'None',
+  //           'bloodGroup': 'Not Set',
+  //           'age': 'Not Set',
+  //           'gender': 'Not Set',
+  //         });
+  //       } catch (e) {
+  //         print(e.toString());
+  //       }
+  //     }
+  //     var _responseData = json.decode(response.body);
+  //     if (_responseData['error'] != null)
+  //       throw CustomExceptions(_responseData['error']['message']);
+  //
+  //     _token = _responseData['idToken'];
+  //     _userId = _responseData['localId'];
+  //     _expiryDate = DateTime.now().add(
+  //       Duration(
+  //         seconds: int.parse(
+  //           _responseData['expiresIn'],
+  //         ),
+  //       ),
+  //     );
+  //     _autoLogout();
+  //     // notifyListeners();
+  //
+  //     final userData = json.encode(
+  //       {
+  //         'token': _token,
+  //         'userId': _userId,
+  //         'expiryDate': _expiryDate.toIso8601String(),
+  //       },
+  //     );
+  //     prefs.setString('userData', userData);
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 
   Future<void> signUp(String email, String password) async {
     try {
@@ -230,13 +229,7 @@ class AuthClass extends ChangeNotifier {
 
 //       });
 
-      Api api = Api(path: "User");
-      api.addDocument(
-        
-        {
-        
-        "user": "shiwam"});
-
+   ///Todo aunthicate use & create user in firebase
     } on FirebaseException catch (e) {
       log("Firebase Exception " + e.message);
     }

@@ -1,3 +1,5 @@
+//@dart=2.9
+
 class ImageClass {
   String name, url;
   ImageClass({this.name, this.url});

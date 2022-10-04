@@ -1,9 +1,9 @@
+//@dart=2.9
+
+import 'package:doctor_patient/services/constants.dart';
+import 'package:doctor_patient/view/home_page.dart';
 import 'package:flutter/material.dart';
-import '../screens/main/home/homePage.dart';
-import '../screens/main/more.dart';
-import '../screens/main/progress.dart';
-import '../screens/main/treatment.dart';
-import '../shared/constants.dart';
+
 
 class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({
@@ -52,21 +52,21 @@ class MyBottomNavBar extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.medical_services_sharp, color: Colors.blueGrey),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Treatment()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => Treatment()),
+              // );
             },
           ),
           IconButton(
             icon: const Icon(Icons.more_horiz, color: Colors.blueGrey),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => More()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => More()),
+              // );
             },
           ),
         ],

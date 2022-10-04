@@ -1,37 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//@dart=2.9
+
+
+
+
+import 'package:doctor_patient/main.dart';
+import 'package:doctor_patient/view/home_page.dart';
+import 'package:doctor_patient/view/link_relative.dart';
 import 'package:flutter/material.dart';
 
-import 'package:rich_alert/rich_alert.dart';
-import '../main.dart';
-import '../screens/main/home/JagaMe/contact_relatives_screen.dart';
-import '../screens/main/home/JagaMe/link_relative.dart';
-import '../screens/main/home/profile/profile_screen.dart';
-import '../services/auth.dart';
-
-
-final auth = FirebaseAuth.instance;
-final user = User;
-AuthClass authClass = AuthClass();
-Future<User> getUser() async {
-  return await auth.currentUser;
-}
-
 class AppDrawer extends StatelessWidget {
-  String userId, imageUrl = '';
-  User loggedInUser;
-
-  @override
-  void initState() {
-    getCurrentUser();
-  }
-
-  getCurrentUser() async {
-    User user = await FirebaseAuth.instance.currentUser;
-      userId   = user.uid;
-
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +79,8 @@ class AppDrawer extends StatelessWidget {
                               TextButton(
                                 child: Text("Yes"),
                                 onPressed: () async {
-                                  await authClass.signOut();
+                                  ///To do add signOut
+                                  // await authClass.signOut();
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(builder: (builder) => MyApp()),
@@ -239,7 +217,8 @@ class ROROAppBar extends StatelessWidget implements PreferredSizeWidget {
           actions: <Widget>[
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, ProfileScreen.routeName);
+                ///Todo add nav to ProfileScreen
+                // Navigator.pushNamed(context, ProfileScreen.routeName);
               },
               child: CircleAvatar(
                 radius: 20,

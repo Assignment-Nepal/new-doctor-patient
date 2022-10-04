@@ -1,3 +1,5 @@
+//@dart=2.9
+
 class Relative {
   String name, email, phoneNumber, uid, documentID;
   Relative();
