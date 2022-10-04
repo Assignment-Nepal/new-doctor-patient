@@ -15,26 +15,23 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
-    return MultiProvider(
-      providers: [
-        // ChangeNotifierProvider<AuthClass>(
-        //   create: (context) => AuthClass(),
-        // ),
-        // ChangeNotifierProvider<NotificationService>(
-        //   create: (context) => NotificationService(),
-        // ),
-        // StreamProvider<User>.value(
-        //   value: FirebaseAuth.instance.authStateChanges(),
-        // ),
-      ],
-      child: HomePage(),
+    return MaterialApp(
+      home: HomePage(),
     );
+    //  MultiProvider(
+    // providers: [
+    //   // ChangeNotifierProvider<AuthClass>(
+    //   //   create: (context) => AuthClass(),
+    //   // ),
+    //   // ChangeNotifierProvider<NotificationService>(
+    //   //   create: (context) => NotificationService(),
+    //   // ),
+    //   // StreamProvider<User>.value(
+    //   //   value: FirebaseAuth.instance.authStateChanges(),
+    //   // ),
+    // ],
+    // HomePage(),
   }
 }

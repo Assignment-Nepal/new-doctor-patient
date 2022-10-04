@@ -9,8 +9,6 @@ import 'dart:ui';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -19,13 +17,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
-
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -46,13 +40,13 @@ class _HomePageState extends State<HomePage> {
                     alertType: RichAlertType.WARNING,
                     actions: <Widget>[
                       ElevatedButton(
-                        child: Text("Yes"),
+                        child: const Text("Yes"),
                         onPressed: () {
                           SystemNavigator.pop();
                         },
                       ),
                       ElevatedButton(
-                        child: Text("No"),
+                        child: const Text("No"),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -68,8 +62,8 @@ class _HomePageState extends State<HomePage> {
             },
             child: ListView(
               children: <Widget>[
-                SizedBox(
-                  height: height * 0.1,
+                const SizedBox(
+                  height: 15,
                 ),
                 Row(
                   children: <Widget>[
@@ -77,25 +71,25 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: <Widget>[
                           InkWell(
-                            splashColor: Colors.purple,
-                            child: CardButton(
-                              height: height * 0.2,
-                              width: width * (35 / 100),
-                              icon: FontAwesomeIcons.userDoctor,
-                              size: width * (25 / 100),
-                              color: Colors.purple[200],
-                              borderColor: Colors.purple.withOpacity(0.75),
-                            ),
-                            onTap: () {
-                              ///Todo add  navigation to  AppoinmentReminder.routeName
-                            }
-                            //   Navigator.pushNamed(
-                            //       context, AppoinmentReminder.routeName);
-                            // },
-                          ),
-                          Padding(
+                              splashColor: Colors.purple,
+                              child: CardButton(
+                                height: height * 0.2,
+                                width: width * (35 / 100),
+                                icon: FontAwesomeIcons.userDoctor,
+                                size: width * (25 / 100),
+                                color: Colors.purple[200],
+                                borderColor: Colors.purple.withOpacity(0.75),
+                              ),
+                              onTap: () {
+                                ///Todo add  navigation to  AppoinmentReminder.routeName
+                              }
+                              //   Navigator.pushNamed(
+                              //       context, AppoinmentReminder.routeName);
+                              // },
+                              ),
+                          const Padding(
                             padding: EdgeInsets.only(top: 8.0),
-                            child: Text('Appointment Reminder'),
+                            child: const Text('Appointment Reminder'),
                           ),
                         ],
                       ),
@@ -112,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                               size: width * 0.2,
                               color: Colors.yellowAccent[700],
                               borderColor:
-                              Colors.yellowAccent.withOpacity(0.75),
+                                  Colors.yellowAccent.withOpacity(0.75),
                             ),
                             onTap: () {
                               ///Todo add navigation to MedicineReminder
@@ -120,17 +114,17 @@ class _HomePageState extends State<HomePage> {
                               //     context, MedicineReminder.routeName);
                             },
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 8.0),
-                            child: Text('Medicine Intake Reminder'),
+                            child: const Text('Medicine Intake Reminder'),
                           )
                         ],
                       ),
                     )
                   ],
                 ),
-                SizedBox(
-                  height: height * 0.06,
+                const SizedBox(
+                  height: 15,
                 ),
                 /*Row(
                   children: <Widget>[
@@ -313,7 +307,7 @@ class _HomePageState extends State<HomePage> {
                               // Navigator.pushNamed(context, NotePage.routeName);
                             },
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 8.0),
                             child: Text('Notes'),
                           ),
@@ -342,8 +336,8 @@ class _HomePageState extends State<HomePage> {
                               //     ));
                             },
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 8.0),
+                          const Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: Text('Health Tracker'),
                           )
                         ],
@@ -351,11 +345,68 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
-                SizedBox(
-                  height: height * (5 / 100),
+                // SizedBox(
+                //   height: height * (5 / 100),
+                // ),
+                const SizedBox(
+                  height: 15,
                 ),
-                SizedBox(
-                  height: 30,
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          InkWell(
+                              splashColor: Colors.purple,
+                              child: CardButton(
+                                height: height * 0.2,
+                                width: width * (35 / 100),
+                                icon: FontAwesomeIcons.envelopeOpenText,
+                                size: width * (25 / 100),
+                                color: Colors.red[200],
+                                borderColor: Colors.red.withOpacity(0.75),
+                              ),
+                              onTap: () {
+                                ///Todo add  navigation to  AppoinmentReminder.routeName
+                              }
+                              //   Navigator.pushNamed(
+                              //       context, AppoinmentReminder.routeName);
+                              // },
+                              ),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: Text('Appointment Reminder'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          InkWell(
+                            splashColor: Colors.yellowAccent,
+                            child: CardButton(
+                              height: height * (20 / 100),
+                              width: width * (35 / 100),
+                              icon: FontAwesomeIcons.message,
+                              size: width * 0.2,
+                              color: Colors.blue[700],
+                              borderColor: Colors.blue.withOpacity(0.75),
+                            ),
+                            onTap: () {
+                              ///Todo add navigation to MedicineReminder
+                              // Navigator.pushNamed(
+                              //     context, MedicineReminder.routeName);
+                            },
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: const Text('Medicine Intake Reminder'),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
                 // Expanded(
                 //   child: Column(
@@ -384,13 +435,10 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           )),
-      bottomNavigationBar: MyBottomNavBar(),
+      bottomNavigationBar: const MyBottomNavBar(),
     );
   }
-
-
 }
-
 
 class RichAlertDialog extends StatefulWidget {
   /// The title of the dialog is displayed in a large font at the top
@@ -442,9 +490,12 @@ class RichAlertDialog extends StatefulWidget {
 
 class _RichAlertDialogState extends State<RichAlertDialog> {
   Map<int, AssetImage> _typeAsset = {
-    RichAlertType.ERROR: AssetImage("packages/rich_alert/assets/error.png"),
-    RichAlertType.SUCCESS: AssetImage("packages/rich_alert/assets/success.png"),
-    RichAlertType.WARNING: AssetImage("packages/rich_alert/assets/warning.png"),
+    RichAlertType.ERROR:
+        const AssetImage("packages/rich_alert/assets/error.png"),
+    RichAlertType.SUCCESS:
+        const AssetImage("packages/rich_alert/assets/success.png"),
+    RichAlertType.WARNING:
+        const AssetImage("packages/rich_alert/assets/warning.png"),
   };
 
   Map<int, Color> _typeColor = {
@@ -471,7 +522,7 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     dialogHeight = deviceHeight * (2 / 5);
 
     return MediaQuery(
-      data: MediaQueryData(),
+      data: const MediaQueryData(),
       child: BackdropFilter(
         filter: ImageFilter.blur(
           sigmaX: widget.blurValue != null ? widget.blurValue : 3.0,
@@ -497,8 +548,8 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                         height: dialogHeight,
                         width: deviceWidth * 0.9,
                         child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20.0),
                                 topRight: Radius.circular(20.0)),
                           ),
@@ -512,7 +563,7 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                               widget.alertSubtitle,
                               SizedBox(height: dialogHeight / 10),
                               widget.actions != null &&
-                                  widget.actions.isNotEmpty
+                                      widget.actions.isNotEmpty
                                   ? _buildActions()
                                   : _defaultAction(context),
                             ],
@@ -559,9 +610,9 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
       child: RaisedButton(
         elevation: 2.0,
         color: _typeColor[widget.alertType],
-        child: Text(
+        child: const Text(
           "GOT IT",
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         onPressed: () {
           Navigator.pop(context);
@@ -574,14 +625,14 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
 Text richTitle(String title) {
   return Text(
     title,
-    style: TextStyle(fontSize: 24.0),
+    style: const TextStyle(fontSize: 24.0),
   );
 }
 
 Text richSubtitle(String subtitle) {
   return Text(
     subtitle,
-    style: TextStyle(
+    style: const TextStyle(
       color: Colors.grey,
     ),
   );
@@ -597,10 +648,3 @@ class RichAlertType {
   /// Indicates a warning dialog by providing a warning icon.
   static const int WARNING = 2;
 }
-
-
-
-
-
-
-
